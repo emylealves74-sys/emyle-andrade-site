@@ -1,12 +1,12 @@
-// ===== Lenis: scroll suave (padrão em todo site novo) =====
-if (window.Lenis) {
-  const lenis = new Lenis({ duration: 1.1, smoothWheel: true });
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
-  requestAnimationFrame(raf);
-}
+// ===== Lenis: DESLIGADO TEMPORARIAMENTE p/ testar se é a causa do franjamento =====
+// if (window.Lenis) {
+//   const lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+//   function raf(time) {
+//     lenis.raf(time);
+//     requestAnimationFrame(raf);
+//   }
+//   requestAnimationFrame(raf);
+// }
 
 // ===== Navbar: fundo ao rolar + menu mobile =====
 const navbar = document.getElementById('navbar');
