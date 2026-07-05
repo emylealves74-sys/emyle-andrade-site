@@ -726,6 +726,13 @@ h3 { font-family: var(--font-base); font-size: 1.25rem; font-weight: 700; letter
   font-weight: 900;
   color: rgba(10,10,10,0.08);
   text-transform: uppercase;
+  /* Texto enorme + baixa opacidade + transform contínuo = combinação clássica
+     de franjamento de cor (glitch vermelho/verde nas bordas). will-change
+     trava a camada de composição na GPU e evita o re-rasterize por quadro. */
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 /* ===== Footer ===== */
