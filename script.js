@@ -1,13 +1,3 @@
-// ===== Lenis: scroll suave (reativado após corrigir will-change permanente) =====
-if (window.Lenis) {
-  const lenis = new Lenis({ duration: 1.1, smoothWheel: true });
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
-  requestAnimationFrame(raf);
-}
-
 // ===== Navbar: fundo ao rolar + menu mobile =====
 const navbar = document.getElementById('navbar');
 const hamburger = document.getElementById('hamburger');
