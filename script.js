@@ -1,12 +1,12 @@
-// ===== Lenis: DESLIGADO TEMPORARIAMENTE p/ testar se é a causa do franjamento =====
-// if (window.Lenis) {
-//   const lenis = new Lenis({ duration: 1.1, smoothWheel: true });
-//   function raf(time) {
-//     lenis.raf(time);
-//     requestAnimationFrame(raf);
-//   }
-//   requestAnimationFrame(raf);
-// }
+// ===== Lenis: scroll suave (reativado após corrigir will-change permanente) =====
+if (window.Lenis) {
+  const lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+}
 
 // ===== Navbar: fundo ao rolar + menu mobile =====
 const navbar = document.getElementById('navbar');
@@ -103,8 +103,13 @@ function animateCount(el) {
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.classList.add('in-view');
-      revealObserver.unobserve(entry.target);
+      const el = entry.target;
+      // will-change só durante a transição (evita ghosting de camada de GPU
+      // permanente — nunca deixar will-change fixo em dezenas de elementos).
+      el.style.willChange = 'opacity, transform';
+      el.classList.add('in-view');
+      el.addEventListener('transitionend', () => { el.style.willChange = 'auto'; }, { once: true });
+      revealObserver.unobserve(el);
     }
   });
 }, { threshold: 0.15 });

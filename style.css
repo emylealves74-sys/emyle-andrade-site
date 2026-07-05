@@ -818,16 +818,15 @@ h3 { font-family: var(--font-base); font-size: 1.25rem; font-weight: 700; letter
 }
 
 /* ===== Reveal animation ===== */
-/* will-change + backface-visibility evitam o "franjamento" de cor (fringing
-   vermelho/verde nas bordas do texto) que aparece no Windows/Chrome quando
-   se anima transform em texto sem uma camada de composição estável. */
+/* IMPORTANTE: will-change NÃO fica fixo aqui — will-change permanente em
+   dezenas de elementos (.reveal é usado na página toda) é causa clássica de
+   ghosting/repaint trail (o navegador mantém camadas de GPU abertas demais).
+   O JS (script.js) adiciona will-change só durante a transição e remove
+   logo depois (evento transitionend). */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 0.7s ease, transform 0.7s ease;
-  will-change: opacity, transform;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
 }
 .reveal.in-view {
   opacity: 1;
