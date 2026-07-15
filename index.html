@@ -534,7 +534,12 @@ a{color:inherit;text-decoration:none}
 .cta-final::before{content:"";position:absolute;left:50%;top:42%;translate:-50% -50%;width:70vw;height:70vw;
   max-width:880px;max-height:880px;border-radius:50%;background:radial-gradient(circle,rgba(62,232,168,.16),transparent 65%);
   filter:blur(80px);z-index:0;pointer-events:none}
-.cta-box{position:relative;z-index:1;max-width:720px;margin:0 auto;border:1px solid var(--line-m);border-radius:28px;
+.cta-visual{position:relative;z-index:1;max-width:1040px;margin:0 auto -2.6rem;border-radius:24px;overflow:hidden;
+  border:1px solid var(--line-m);box-shadow:0 44px 100px -36px rgba(62,232,168,.55),inset 0 1px 0 rgba(255,255,255,.12)}
+.cta-visual img{width:100%;height:auto;display:block}
+.cta-visual::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,transparent 62%,rgba(4,12,8,.85))}
+.cta-box{position:relative;z-index:2;max-width:720px;margin:0 auto;border:1px solid var(--line-m);border-radius:28px;
   padding:3.4rem 2.5rem;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.008));
   backdrop-filter:blur(10px);box-shadow:0 40px 90px -42px rgba(62,232,168,.45),inset 0 1px 0 rgba(255,255,255,.1)}
 .cta-box h2{font-size:clamp(1.9rem,4.5vw,3rem);font-weight:800;letter-spacing:-.02em;line-height:1.12;margin:.9rem 0 1rem}
@@ -982,10 +987,13 @@ a{color:inherit;text-decoration:none}
 <!-- ============ CTA FINAL ============ -->
 <section class="cta-final" id="contato">
   <div class="wrap">
+    <div class="cta-visual">
+      <img src="cta.png" alt="Painel de IA mostrando leads, financeiro, ROI e vendas em tempo real com sugestão automática" loading="lazy" width="2816" height="1536" />
+    </div>
     <div class="cta-box">
       <span class="ey" style="display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mint-2)">// Bora começar</span>
       <h2>Sua empresa merece<br><span class="grad">sair do escuro.</span></h2>
-      <p>Me chama no WhatsApp. A gente faz o diagnóstico do seu negócio e eu te mostro <b>exatamente o que dá pra organizar, automatizar e medir</b> — sem custo pra começar.</p>
+      <p>Me chama no WhatsApp. A gente faz o diagnóstico do seu negócio e eu te mostro <b>exatamente o que dá pra organizar, automatizar e medir</b>, sem custo pra começar.</p>
       <div class="cta-row">
         <a class="cta-main" href="https://wa.me/5585992328407?text=Oi%20Emyle!%20Quero%20fazer%20o%20diagn%C3%B3stico%20do%20meu%20neg%C3%B3cio">Fazer meu diagnóstico <span>↗</span></a>
       </div>
