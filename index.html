@@ -138,8 +138,11 @@ a{color:inherit;text-decoration:none}
   border:1px solid var(--line-m);border-radius:999px;padding:.5rem 1.05rem;
   background:rgba(62,232,168,.07)}
 
-.h1{font-size:clamp(2.3rem,5.6vw,4.3rem);font-weight:900;line-height:1.04;
-  letter-spacing:-.03em;margin:1.3rem 0 1.15rem;text-transform:uppercase}
+@font-face{font-family:'Nasalization';src:url('fonts/nasalization.woff2') format('woff2');
+  font-weight:400;font-style:normal;font-display:swap}
+
+.h1{font-family:'Nasalization','Inter',sans-serif;font-size:clamp(2rem,5vw,3.7rem);font-weight:400;line-height:1.25;
+  letter-spacing:.01em;margin:1.3rem 0 1.15rem;text-transform:uppercase}
 .h1 .grad{background:linear-gradient(120deg,var(--gold-3),var(--gold) 45%,var(--gold-2));
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
   filter:drop-shadow(0 0 30px rgba(255,193,59,.38))}
