@@ -115,11 +115,11 @@ a{color:inherit;text-decoration:none}
 
 /* imagem cinematográfica ocupando a direita, full-bleed */
 .hero-art{position:absolute;inset:0;z-index:0}
-.hero-art img,.hero-art video{position:absolute;right:0;top:50%;transform:translateY(-50%);height:90%;width:auto;max-width:none;
+.hero-art img,.hero-art video{position:absolute;right:0;top:50%;transform:translateY(-50%);height:95%;width:auto;max-width:none;
   object-fit:cover;object-position:right center}
 /* funde a arte com o fundo da página nas bordas (sem crop feio) */
 .hero-art::before{content:"";position:absolute;inset:0;z-index:1;
-  background:linear-gradient(90deg, var(--bg) 0%, var(--bg) 8%, transparent 46%);}
+  background:linear-gradient(90deg, var(--bg) 0%, var(--bg) 8%, transparent 58%);}
 .hero-art::after{content:"";position:absolute;inset:0;z-index:1;
   background:
     linear-gradient(0deg, var(--bg) 0%, transparent 16%, transparent 84%, var(--bg) 100%);}
