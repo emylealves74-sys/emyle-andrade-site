@@ -169,10 +169,17 @@ a{color:inherit;text-decoration:none}
   box-shadow:0 0 10px 1px rgba(62,232,168,.9);animation:live-pulse 1.8s ease-in-out infinite}
 @keyframes live-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.7)}}
 @media(prefers-reduced-motion:reduce){.hb-live i{animation:none}}
-.hb-steps{display:flex;align-items:center;gap:1.4rem;flex:1;overflow:hidden}
-.hb-step{display:flex;align-items:center;gap:.6rem;font-size:.8rem;font-weight:500;color:rgba(242,248,244,.85);white-space:nowrap}
-.hb-step b{width:23px;height:23px;border-radius:50%;background:var(--gold-soft);border:1px solid rgba(255,193,59,.5);color:var(--gold-2);
-  display:grid;place-items:center;font-size:.72rem;font-weight:700;flex:0 0 23px}
+.hb-metrics{display:flex;align-items:center;gap:.8rem;flex:1;overflow:hidden}
+.hb-chip{display:flex;align-items:center;gap:.65rem;padding:.45rem .8rem;border-radius:12px;
+  background:rgba(255,255,255,.035);border:1px solid var(--line);white-space:nowrap;
+  transition:border-color .3s,background .3s}
+.hb-chip:hover{border-color:var(--line-m);background:rgba(62,232,168,.05)}
+.hb-chip .lbl{display:flex;flex-direction:column;line-height:1.15}
+.hb-chip .lbl b{font-size:.6rem;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--dim)}
+.hb-chip .lbl em{font-style:normal;font-size:.98rem;font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums}
+.hb-chip .spark{width:38px;height:16px;flex:0 0 38px;overflow:visible}
+.hb-chip .trend{font-size:.66rem;font-weight:700;color:var(--mint-2)}
+.hb-chip .trend.gold{color:var(--gold-2)}
 .hb-arrow{margin-left:auto;width:36px;height:36px;border-radius:50%;border:1px solid var(--line-m);color:var(--mint-2);
   display:grid;place-items:center;flex:0 0 36px;transition:background .3s,border-color .3s}
 .hb-arrow:hover{background:rgba(62,232,168,.15)}
@@ -190,7 +197,7 @@ a{color:inherit;text-decoration:none}
   .hero-in{padding-top:6.2rem;max-width:none;text-align:left}
   .h1{font-size:clamp(2rem,8vw,2.8rem)}
   .hb-in{flex-wrap:wrap;padding:1rem 1.4rem}
-  .hb-steps{display:none}
+  .hb-metrics{display:none}
   .scroll-hint{display:none}
 }
 @media(prefers-reduced-motion:reduce){.scroll-hint svg{animation:none}}
@@ -634,9 +641,22 @@ a{color:inherit;text-decoration:none}
   <div class="hero-bar">
     <div class="hb-in">
       <span class="hb-live"><i></i> Em tempo real</span>
-      <div class="hb-steps">
-        <span class="hb-step"><b>1</b>Dashboard com leads, financeiro e métricas em tempo real</span>
-        <span class="hb-step"><b>2</b>Produtividade da equipe visível, sem retrabalho</span>
+      <div class="hb-metrics" aria-hidden="true">
+        <span class="hb-chip">
+          <span class="lbl"><b>Leads no mês</b><em>1.240</em></span>
+          <svg class="spark" viewBox="0 0 40 16" fill="none"><polyline points="1,13 9,10 17,11 25,6 33,4 39,2" style="stroke:var(--mint)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <i class="trend">+18%</i>
+        </span>
+        <span class="hb-chip">
+          <span class="lbl"><b>Faturamento</b><em>R$ 45k</em></span>
+          <svg class="spark" viewBox="0 0 40 16" fill="none"><polyline points="1,12 9,13 17,8 25,9 33,4 39,3" style="stroke:var(--gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <i class="trend gold">+38%</i>
+        </span>
+        <span class="hb-chip">
+          <span class="lbl"><b>Tempo/semana</b><em>12h</em></span>
+          <svg class="spark" viewBox="0 0 40 16" fill="none"><polyline points="1,4 9,6 17,5 25,9 33,11 39,13" style="stroke:var(--mint)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <i class="trend">economizadas</i>
+        </span>
       </div>
       <span class="hb-arrow">→</span>
       <div class="hb-social">
