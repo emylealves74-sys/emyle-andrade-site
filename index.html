@@ -103,7 +103,7 @@ a{color:inherit;text-decoration:none}
 
 /* imagem cinematográfica ocupando a direita, full-bleed */
 .hero-art{position:absolute;inset:0;z-index:0}
-.hero-art img,.hero-art video{position:absolute;right:0;top:0;height:100%;width:auto;max-width:none;
+.hero-art img,.hero-art video{position:absolute;right:0;top:50%;transform:translateY(-50%);height:90%;width:auto;max-width:none;
   object-fit:cover;object-position:right center}
 /* funde a arte com o fundo da página nas bordas (sem crop feio) */
 .hero-art::before{content:"";position:absolute;inset:0;z-index:1;
@@ -119,7 +119,8 @@ a{color:inherit;text-decoration:none}
 
 /* ===== conteúdo à esquerda ===== */
 .hero-in{position:relative;z-index:3;width:min(100% - 2.6rem,1240px);margin-inline:auto;
-  padding:6.5rem 0 4rem;max-width:640px}
+  padding:6.5rem 0 4rem}
+.hero-in>*{max-width:640px}
 .badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-weight:700;
   letter-spacing:.12em;text-transform:uppercase;color:var(--mint-2);
   border:1px solid var(--line-m);border-radius:999px;padding:.5rem 1.05rem;
@@ -173,7 +174,7 @@ a{color:inherit;text-decoration:none}
 .hb-social svg{width:14px;height:14px}
 
 @media(max-width:900px){
-  .hero-art img,.hero-art video{width:100%;height:70%;top:auto;bottom:0;object-position:center 20%}
+  .hero-art img,.hero-art video{width:100%;height:70%;top:auto;bottom:0;transform:none;object-position:center 20%}
   .hero-art::before{background:linear-gradient(180deg, var(--bg) 0%, transparent 100%)}
   .hero-art::after{background:linear-gradient(0deg, var(--bg) 0%, transparent 22%)}
   .vign{background:radial-gradient(ellipse 100% 60% at 50% 0%, var(--bg) 0%, transparent 60%)}
@@ -438,6 +439,125 @@ a{color:inherit;text-decoration:none}
 @media(max-width:980px){.dor-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:680px){.dor-grid{grid-template-columns:1fr;gap:1.1rem}.dor-card{min-height:0}}
 .dor-cta{margin-top:2.6rem;text-align:center}
+
+/* ============================================================
+   COMO FUNCIONA — timeline vertical com nós conectados
+   (composição linear, distinta dos grids/rail/hub das outras)
+   ============================================================ */
+.processo{padding:6.5rem 0 5rem;position:relative}
+.proc-wrap{margin-top:3rem;position:relative;max-width:780px}
+.proc-line{position:absolute;left:23px;top:24px;bottom:36px;width:2px;
+  background:linear-gradient(180deg,var(--mint),var(--mint-3) 50%,transparent);opacity:.7}
+.proc-step{position:relative;display:grid;grid-template-columns:48px 1fr;gap:1.5rem;padding:1.3rem 0;align-items:start}
+.proc-node{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;position:relative;z-index:1;
+  background:linear-gradient(150deg,rgba(62,232,168,.2),rgba(18,185,129,.05));
+  border:1px solid var(--line-m);font-weight:800;color:var(--mint-2);font-size:1.05rem;
+  backdrop-filter:blur(4px);transition:border-color .3s,box-shadow .3s}
+.proc-step:hover .proc-node{border-color:var(--mint);box-shadow:0 0 22px -4px rgba(62,232,168,.65)}
+.proc-body h3{font-size:1.15rem;font-weight:700;margin-bottom:.45rem}
+.proc-body p{color:var(--mut);font-size:.92rem;line-height:1.6;max-width:56ch}
+.proc-body .free{display:inline-block;margin-top:.6rem;font-size:.68rem;font-weight:700;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--mint-2);background:var(--mint-soft);padding:.28rem .65rem;border-radius:999px}
+@media(max-width:560px){.proc-step{grid-template-columns:40px 1fr;gap:1.1rem}.proc-node{width:40px;height:40px;font-size:.95rem}.proc-line{left:19px}}
+
+/* ============================================================
+   PROJETOS — rail horizontal com scroll-snap (interação distinta
+   dos grids verticais das outras seções)
+   ============================================================ */
+.projetos{padding:7rem 0 6rem;position:relative;overflow:hidden}
+.proj-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap}
+.proj-hint{font-size:.78rem;color:var(--dim);display:inline-flex;align-items:center;gap:.5rem;white-space:nowrap}
+.proj-hint svg{width:16px;height:16px}
+.proj-rail{display:flex;gap:1.4rem;margin-top:3rem;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:.5rem .3rem 1.6rem;scrollbar-width:thin;scrollbar-color:var(--line-m) transparent}
+.proj-rail::-webkit-scrollbar{height:6px}
+.proj-rail::-webkit-scrollbar-track{background:transparent}
+.proj-rail::-webkit-scrollbar-thumb{background:var(--line-m);border-radius:3px}
+.proj-card{flex:0 0 auto;width:min(84vw,410px);scroll-snap-align:start;border-radius:20px;overflow:hidden;
+  border:1px solid var(--line);background:rgba(255,255,255,.02);
+  transition:transform .4s var(--ease),border-color .4s var(--ease)}
+.proj-card:hover{transform:translateY(-6px);border-color:var(--line-m)}
+.proj-thumb{position:relative;aspect-ratio:3/2;overflow:hidden;background:#0a0e0c}
+.proj-thumb img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;
+  transition:transform .6s var(--ease)}
+.proj-card:hover .proj-thumb img{transform:scale(1.05)}
+.proj-thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(4,13,9,.55));pointer-events:none}
+.proj-meta{padding:1.2rem 1.3rem 1.4rem;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.proj-meta h3{font-size:1.05rem;font-weight:700}
+.proj-tag{font-size:.66rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mint-2);
+  background:var(--mint-soft);padding:.32rem .7rem;border-radius:999px;white-space:nowrap}
+.proj-live{display:inline-flex;align-items:center;gap:.4rem;position:absolute;top:.9rem;right:.9rem;z-index:2;
+  font-size:.66rem;font-weight:700;color:var(--ink);background:rgba(4,13,9,.6);backdrop-filter:blur(6px);
+  border:1px solid var(--line-m);padding:.34rem .7rem;border-radius:999px}
+.proj-live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--mint);box-shadow:0 0 8px var(--mint)}
+
+/* ============================================================
+   QUEM FAZ — foto real emoldurada à esquerda + posicionamento
+   (composição contida, oposta ao hero full-bleed image-right)
+   ============================================================ */
+.sobre{padding:5rem 0 7rem;position:relative;overflow:hidden}
+.sobre::before{content:"";position:absolute;left:-10%;top:20%;width:40vw;height:40vw;border-radius:50%;
+  background:radial-gradient(circle,rgba(62,232,168,.12),transparent 70%);filter:blur(90px);z-index:0;pointer-events:none}
+.sobre-grid{position:relative;z-index:1;display:grid;grid-template-columns:.82fr 1fr;gap:3.6rem;align-items:center}
+.sobre-photo{position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--line-m);aspect-ratio:4/5;
+  box-shadow:0 40px 90px -32px rgba(62,232,168,.45),inset 0 1px 0 rgba(255,255,255,.1)}
+.sobre-photo img{width:100%;height:100%;display:block;object-fit:cover;object-position:center 30%}
+.sobre-badge{position:absolute;left:1rem;bottom:1rem;z-index:2;display:flex;align-items:center;gap:.6rem;
+  background:rgba(4,13,9,.72);backdrop-filter:blur(10px);border:1px solid var(--line-m);
+  padding:.6rem .9rem;border-radius:14px}
+.sobre-badge .dot{width:9px;height:9px;border-radius:50%;background:var(--mint);box-shadow:0 0 10px var(--mint)}
+.sobre-badge span{font-size:.78rem;font-weight:600;color:var(--ink)}
+.sobre-txt h2{font-size:clamp(1.8rem,4vw,2.7rem);font-weight:800;letter-spacing:-.02em;line-height:1.12;margin:.9rem 0 1.4rem}
+.sobre-txt h2 .grad{background:linear-gradient(120deg,var(--mint-3),var(--mint) 55%,var(--mint-2));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.sobre-txt p{color:var(--mut);font-size:1rem;line-height:1.65;margin-bottom:1.1rem;max-width:54ch}
+.sobre-txt p b{color:var(--ink);font-weight:700}
+.sobre-cta{margin-top:1.9rem;display:flex;gap:1.2rem;flex-wrap:wrap;align-items:center}
+@media(max-width:820px){
+  .sobre-grid{grid-template-columns:1fr;gap:2.4rem}
+  .sobre-photo{max-width:380px;margin:0 auto}
+}
+
+/* ============================================================
+   CTA FINAL — bloco de fechamento centralizado com glow
+   (composição centrada, distinta de todas as outras seções)
+   ============================================================ */
+.cta-final{position:relative;padding:5.5rem 0 6.5rem;overflow:hidden;text-align:center}
+.cta-final::before{content:"";position:absolute;left:50%;top:42%;translate:-50% -50%;width:70vw;height:70vw;
+  max-width:880px;max-height:880px;border-radius:50%;background:radial-gradient(circle,rgba(62,232,168,.16),transparent 65%);
+  filter:blur(80px);z-index:0;pointer-events:none}
+.cta-box{position:relative;z-index:1;max-width:720px;margin:0 auto;border:1px solid var(--line-m);border-radius:28px;
+  padding:3.4rem 2.5rem;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.008));
+  backdrop-filter:blur(10px);box-shadow:0 40px 90px -42px rgba(62,232,168,.45),inset 0 1px 0 rgba(255,255,255,.1)}
+.cta-box h2{font-size:clamp(1.9rem,4.5vw,3rem);font-weight:800;letter-spacing:-.02em;line-height:1.12;margin:.9rem 0 1rem}
+.cta-box h2 .grad{background:linear-gradient(120deg,var(--mint-3),var(--mint) 55%,var(--mint-2));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.cta-box p{color:var(--mut);font-size:1.02rem;line-height:1.6;max-width:50ch;margin:0 auto 2rem}
+.cta-box p b{color:var(--ink)}
+.cta-box .cta-row{display:flex;justify-content:center;flex-wrap:wrap;gap:1rem}
+.cta-final-note{margin-top:1.5rem;font-size:.82rem;color:var(--dim)}
+@media(max-width:560px){.cta-box{padding:2.6rem 1.5rem}}
+
+/* ============================================================
+   FOOTER — institucional, sem assinatura de terceiros (site próprio)
+   ============================================================ */
+.footer{border-top:1px solid var(--line);padding:3.6rem 0 2.4rem;position:relative}
+.foot-grid{display:flex;justify-content:space-between;gap:2.5rem;flex-wrap:wrap;align-items:flex-start}
+.foot-brand{max-width:320px}
+.foot-brand img{height:34px;width:auto}
+.foot-brand p{color:var(--mut);font-size:.88rem;line-height:1.6;margin-top:1rem}
+.foot-nav{display:flex;gap:3rem;flex-wrap:wrap}
+.foot-col h4{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--dim);margin-bottom:1rem}
+.foot-col a{display:block;color:var(--mut);font-size:.9rem;margin-bottom:.6rem;transition:color .3s}
+.foot-col a:hover{color:var(--mint-2)}
+.foot-bottom{margin-top:3rem;padding-top:1.6rem;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:1.2rem;flex-wrap:wrap;align-items:center;font-size:.8rem;color:var(--dim)}
+.foot-social{display:flex;gap:.7rem}
+.foot-social a{width:38px;height:38px;border-radius:11px;border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;transition:border-color .3s,background .3s}
+.foot-social a:hover{border-color:var(--mint);background:var(--mint-soft)}
+.foot-social svg{width:16px;height:16px;fill:var(--mut)}
+.foot-social a:hover svg{fill:var(--mint-2)}
 </style>
 </head>
 <body>
@@ -459,7 +579,7 @@ a{color:inherit;text-decoration:none}
         <a href="#servicos">Sistemas</a>
         <a href="#resultados">Resultados</a>
         <a href="#projetos">Projetos</a>
-        <a href="#sobre">Quem faz</a>
+        <a href="#quemfaz">Quem faz</a>
       </nav>
       <a class="nav-cta" href="https://wa.me/5585992328407?text=Oi%20Emyle!%20Quero%20organizar%20minha%20empresa%20com%20dados">Falar <span>↗</span></a>
     </div>
@@ -745,6 +865,158 @@ a{color:inherit;text-decoration:none}
   </div>
 </section>
 </div><!-- /deep-zone -->
+
+<!-- ============ COMO FUNCIONA ============ -->
+<section class="processo" id="processo">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="ey" style="display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mint-2)">// Como funciona</span>
+      <h2>Do problema ao painel,<br><span class="grad">em 4 passos.</span></h2>
+      <p>Você não precisa entender de tecnologia. Eu conduzo cada etapa — você só acompanha os números melhorando.</p>
+    </div>
+
+    <div class="proc-wrap">
+      <div class="proc-line" aria-hidden="true"></div>
+      <div class="proc-step">
+        <div class="proc-node">1</div>
+        <div class="proc-body">
+          <h3>Diagnóstico do seu negócio</h3>
+          <p>A gente conversa no WhatsApp. Eu entendo onde o dinheiro vaza, onde o lead se perde e o que dá pra automatizar — sem custo e sem compromisso.</p>
+          <span class="free">Gratuito</span>
+        </div>
+      </div>
+      <div class="proc-step">
+        <div class="proc-node">2</div>
+        <div class="proc-body">
+          <h3>Projeto sob medida</h3>
+          <p>Desenho o sistema pro seu caso: landing page, CRM, automação, dashboard — só o que faz sentido pra você. Você aprova antes de eu construir.</p>
+        </div>
+      </div>
+      <div class="proc-step">
+        <div class="proc-node">3</div>
+        <div class="proc-body">
+          <h3>Construção e no ar</h3>
+          <p>Coloco tudo no ar, conecto seu WhatsApp e as ferramentas que você já usa, e testo cada detalhe antes de entregar na sua mão.</p>
+        </div>
+      </div>
+      <div class="proc-step">
+        <div class="proc-node">4</div>
+        <div class="proc-body">
+          <h3>Acompanhamento com dado</h3>
+          <p>Depois da entrega, ajusto com base nos números reais. Você passa a acompanhar leads, financeiro e resultado sempre atualizados — nunca mais no escuro.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJETOS ============ -->
+<section class="projetos" id="projetos">
+  <div class="wrap">
+    <div class="proj-head">
+      <div class="sec-head" style="margin-bottom:0">
+        <span class="ey" style="display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mint-2)">// Trabalhos recentes</span>
+        <h2>Projetos que já<br><span class="grad">estão no ar.</span></h2>
+        <p>Cada negócio, um sistema com a cara dele — da landing page que captura ao painel que controla a operação.</p>
+      </div>
+      <span class="proj-hint" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        Arraste para o lado
+      </span>
+    </div>
+
+    <div class="proj-rail">
+      <article class="proj-card">
+        <div class="proj-thumb"><img src="portfolio-04.webp" alt="Landing page Premier Ops — sistema de logística com IA" loading="lazy" />
+          <span class="proj-live">No ar</span>
+        </div>
+        <div class="proj-meta"><h3>Premier Ops</h3><span class="proj-tag">Sistema · Logística</span></div>
+      </article>
+      <article class="proj-card">
+        <div class="proj-thumb"><img src="portfolio-01.webp" alt="Landing page para consultório de dentista" loading="lazy" /></div>
+        <div class="proj-meta"><h3>Consultório odonto</h3><span class="proj-tag">Landing · Dentista</span></div>
+      </article>
+      <article class="proj-card">
+        <div class="proj-thumb"><img src="portfolio-03.webp" alt="Página de vendas para psicóloga" loading="lazy" /></div>
+        <div class="proj-meta"><h3>Página de vendas</h3><span class="proj-tag">Vendas · Psicóloga</span></div>
+      </article>
+      <article class="proj-card">
+        <div class="proj-thumb"><img src="portfolio-02.webp" alt="Landing page para biomédica" loading="lazy" /></div>
+        <div class="proj-meta"><h3>Clínica estética</h3><span class="proj-tag">Landing · Biomédica</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUEM FAZ ============ -->
+<section class="sobre" id="quemfaz">
+  <div class="wrap">
+    <div class="sobre-grid">
+      <div class="sobre-photo">
+        <img src="about-photo.webp" alt="Emyle Andrade no escritório, ao lado de telas com os sistemas que ela desenvolve" loading="lazy" width="768" height="1024" />
+        <div class="sobre-badge"><span class="dot"></span><span>Emyle Andrade · Fortaleza-CE</span></div>
+      </div>
+      <div class="sobre-txt">
+        <span class="ey" style="display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mint-2)">// Quem constrói</span>
+        <h2>Eu não faço site.<br><span class="grad">Construo sistemas que vendem.</span></h2>
+        <p>Muita gente entrega uma página bonita e some. Eu entro pra resolver o que trava o seu negócio: <b>lead que se perde, dinheiro sem controle e tempo gasto em tarefa que a IA já faz</b>.</p>
+        <p>Landing page, CRM, automação, dashboard — cada peça conectada num painel só, feito pro seu jeito de trabalhar. Você para de operar no escuro e passa a decidir com número.</p>
+        <div class="sobre-cta">
+          <a class="cta-main" href="https://wa.me/5585992328407?text=Oi%20Emyle!%20Quero%20conversar%20sobre%20um%20sistema%20pro%20meu%20neg%C3%B3cio">Conversar comigo <span>↗</span></a>
+          <a class="cta-sec" href="https://www.instagram.com/emyleandrade.conversao" target="_blank" rel="noopener"><i>@</i> Ver meu Instagram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="cta-final" id="contato">
+  <div class="wrap">
+    <div class="cta-box">
+      <span class="ey" style="display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mint-2)">// Bora começar</span>
+      <h2>Sua empresa merece<br><span class="grad">sair do escuro.</span></h2>
+      <p>Me chama no WhatsApp. A gente faz o diagnóstico do seu negócio e eu te mostro <b>exatamente o que dá pra organizar, automatizar e medir</b> — sem custo pra começar.</p>
+      <div class="cta-row">
+        <a class="cta-main" href="https://wa.me/5585992328407?text=Oi%20Emyle!%20Quero%20fazer%20o%20diagn%C3%B3stico%20do%20meu%20neg%C3%B3cio">Fazer meu diagnóstico <span>↗</span></a>
+      </div>
+      <p class="cta-final-note">Resposta no mesmo dia · Fortaleza-CE e todo o Brasil</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="logo.png" alt="Emyle Andrade" />
+        <p>Sistemas que vendem: landing pages, CRM, automação e dashboards pra empresa que quer sair do escuro e crescer com dado de verdade.</p>
+      </div>
+      <div class="foot-nav">
+        <div class="foot-col">
+          <h4>Navegação</h4>
+          <a href="#servicos">Sistemas</a>
+          <a href="#resultados">Resultados</a>
+          <a href="#projetos">Projetos</a>
+          <a href="#quemfaz">Quem faz</a>
+        </div>
+        <div class="foot-col">
+          <h4>Contato</h4>
+          <a href="https://wa.me/5585992328407">WhatsApp</a>
+          <a href="https://www.instagram.com/emyleandrade.conversao" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Emyle Andrade · Fortaleza-CE</span>
+      <div class="foot-social">
+        <a href="https://www.instagram.com/emyleandrade.conversao" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2c2.7 0 3 .01 4.1.06 1.1.05 1.8.22 2.5.47.7.26 1.2.6 1.8 1.2.6.6.9 1.1 1.2 1.8.25.7.42 1.4.47 2.5.05 1.1.06 1.4.06 4.1s-.01 3-.06 4.1c-.05 1.1-.22 1.8-.47 2.5-.26.7-.6 1.2-1.2 1.8-.6.6-1.1.9-1.8 1.2-.7.25-1.4.42-2.5.47-1.1.05-1.4.06-4.1.06s-3-.01-4.1-.06c-1.1-.05-1.8-.22-2.5-.47-.7-.26-1.2-.6-1.8-1.2-.6-.6-.9-1.1-1.2-1.8-.25-.7-.42-1.4-.47-2.5C2 15 2 14.7 2 12s.01-3 .06-4.1c.05-1.1.22-1.8.47-2.5.26-.7.6-1.2 1.2-1.8.6-.6 1.1-.9 1.8-1.2.7-.25 1.4-.42 2.5-.47C9 2 9.3 2 12 2Zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4Zm5.2-8.4a1.2 1.2 0 1 1 0-2.4 1.2 1.2 0 0 1 0 2.4Z"/></svg></a>
+        <a href="https://wa.me/5585992328407" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.5 14.1c-.2.7-1.3 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.8-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.1c.1.2.1.4 0 .6l-.4.6-.5.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1.1 2.2 1.4 2.5 1.5.3.1.5.1.7-.1l1-1.2c.2-.3.5-.2.7-.1l2 1c.3.1.5.2.6.4 0 .1 0 .7-.2 1.4Z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
