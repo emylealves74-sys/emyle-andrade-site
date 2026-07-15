@@ -405,11 +405,14 @@ a{color:inherit;text-decoration:none}
    e do bento assimétrico do Resultados
    ============================================================ */
 
-/* linha de scan — costura o corte entre Hero e Dores, "lê" o problema ao rolar
-   a régua de progresso usa a altura da própria seção Dores (view-timeline-name),
-   não a da linha (1px) — senão a transição acontece quase instantânea */
-.scan-line{position:relative;height:0;overflow:visible}
-.scan-line::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;
+/* transição Hero → Dores: feixe de luz largo vazando da base da hero
+   + linha fina de scan por cima, como faísca dentro do brilho */
+.scan-line{position:relative;height:0;overflow:visible;z-index:0}
+.scan-line::after{content:"";position:absolute;left:50%;top:-210px;translate:-50% 0;
+  width:min(94%,1220px);height:440px;pointer-events:none;z-index:0;
+  background:radial-gradient(62% 100% at 50% 44%,rgba(62,232,168,.5),transparent 72%);
+  filter:blur(38px)}
+.scan-line::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;z-index:1;
   background:linear-gradient(90deg,transparent,var(--mint) 15%,var(--mint-2) 50%,var(--mint) 85%,transparent);
   box-shadow:0 0 14px 1px rgba(62,232,168,.55);transform-origin:center;opacity:.4;
   animation:scan-reveal 1s linear forwards;animation-timeline:--dores-in;animation-range:entry 0% entry 35%}
