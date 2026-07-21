@@ -135,27 +135,6 @@ nav{position:relative;z-index:3;display:flex;justify-content:space-between;align
 .passo h3{font-size:1.08rem;font-weight:600;letter-spacing:-0.02em;margin-bottom:8px}
 .passo p{font-size:.86rem;color:var(--muted)}
 
-/* ============ PORTFÓLIO - molduras de navegador ============ */
-.portfolio{background:var(--bg-2);border-block:1px solid var(--line)}
-.port-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:36px}
-.browser{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#0b0b0c;transition:border-color .3s ease,transform .3s ease,box-shadow .3s ease}
-.browser:hover{transform:translateY(-4px);border-color:rgba(255,90,46,.45);box-shadow:0 18px 42px -18px rgba(255,90,46,.5),0 0 0 1px rgba(255,90,46,.22)}
-.browser-bar{display:flex;align-items:center;gap:10px;padding:11px 14px;background:#111112;border-bottom:1px solid var(--line)}
-.browser-dots{display:flex;gap:6px;flex:0 0 auto}
-.browser-dots i{width:10px;height:10px;border-radius:50%}
-.browser-dots i:nth-child(1){background:#ff5f57}
-.browser-dots i:nth-child(2){background:#febc2e}
-.browser-dots i:nth-child(3){background:#28c840}
-.browser-url{flex:1;display:flex;align-items:center;gap:7px;background:#0b0b0c;border:1px solid var(--line);border-radius:7px;padding:5px 12px;font-size:.72rem;color:var(--muted);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-.browser-url svg{width:11px;height:11px;flex:0 0 auto;stroke:var(--muted);fill:none;stroke-width:2}
-.browser-view{position:relative;aspect-ratio:16/10;overflow:hidden;background:#0b0b0c}
-.browser-view img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .5s ease}
-.browser-view.center img{object-position:center}
-.browser:hover .browser-view img{transform:scale(1.045)}
-.browser-cap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-top:1px solid var(--line)}
-.browser-cap b{font-size:.94rem;font-weight:600;letter-spacing:-0.01em}
-.browser-cap span{font-size:.7rem;color:var(--accent);font-weight:600;border:1px solid rgba(255,90,46,.35);border-radius:999px;padding:3px 10px;white-space:nowrap}
-
 /* ============ CTA FINAL ============ */
 .cta-final{position:relative;z-index:0;text-align:center;padding:110px 0;overflow:hidden}
 .cta-final::before{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:820px;height:600px;background:radial-gradient(ellipse,var(--accent) 0%,rgba(255,90,46,.5) 28%,transparent 68%);opacity:.3;z-index:-1;pointer-events:none}
@@ -204,7 +183,6 @@ nav{position:relative;z-index:3;display:flex;justify-content:space-between;align
   .showcase-full{display:flex;flex-direction:column}
   .showcase-full::after{display:none}
   .showcase-glass{position:static;max-width:none;padding:18px 20px;border-radius:0;backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--bg-2);border:1px solid var(--line);border-top:none}
-  .port-grid{grid-template-columns:1fr;gap:16px}
   .footer-top{grid-template-columns:1fr 1fr;gap:32px 24px;padding:48px 0 36px}
   .footer-brand{grid-column:1/-1}
   .footer-giant span{font-size:12.5vw}
@@ -357,53 +335,6 @@ nav{position:relative;z-index:3;display:flex;justify-content:space-between;align
   </div>
 </section>
 
-<!-- ============ PORTFÓLIO ============ -->
-<section class="sec portfolio" id="portfolio">
-  <div class="wrap">
-    <span class="sec-tag">Projetos</span>
-    <h2>Páginas feitas pra converter, não pra decorar.</h2>
-    <div class="port-grid">
-
-      <div class="browser">
-        <div class="browser-bar">
-          <div class="browser-dots"><i></i><i></i><i></i></div>
-          <div class="browser-url"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>clinica-odontologia.com.br</div>
-        </div>
-        <div class="browser-view"><img src="/portfolio-01.webp" alt="Landing page para clínica odontológica" loading="lazy" width="640" height="400"></div>
-        <div class="browser-cap"><b>Clínica Odontológica</b><span>Landing Page</span></div>
-      </div>
-
-      <div class="browser">
-        <div class="browser-bar">
-          <div class="browser-dots"><i></i><i></i><i></i></div>
-          <div class="browser-url"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>estetica-biomedicina.com.br</div>
-        </div>
-        <div class="browser-view"><img src="/portfolio-02.webp" alt="Landing page para biomedicina e estética" loading="lazy" width="640" height="400"></div>
-        <div class="browser-cap"><b>Biomedicina &amp; Estética</b><span>Landing Page</span></div>
-      </div>
-
-      <div class="browser">
-        <div class="browser-bar">
-          <div class="browser-dots"><i></i><i></i><i></i></div>
-          <div class="browser-url"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>consultorio-psicologia.com.br</div>
-        </div>
-        <div class="browser-view center"><img src="/portfolio-03.webp" alt="Página de vendas para consultório de psicologia" loading="lazy" width="640" height="400"></div>
-        <div class="browser-cap"><b>Consultório de Psicologia</b><span>Página de Vendas</span></div>
-      </div>
-
-      <div class="browser">
-        <div class="browser-bar">
-          <div class="browser-dots"><i></i><i></i><i></i></div>
-          <div class="browser-url"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>premier-ops.com.br</div>
-        </div>
-        <div class="browser-view"><img src="/portfolio-04.webp" alt="Sistema operacional de logística com IA (Premier Ops)" loading="lazy" width="640" height="400"></div>
-        <div class="browser-cap"><b>Premier Ops</b><span>Sistema com IA</span></div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 <!-- ============ CTA FINAL ============ -->
 <section class="cta-final">
   <div class="wrap">
@@ -434,7 +365,6 @@ nav{position:relative;z-index:3;display:flex;justify-content:space-between;align
       <div class="footer-col">
         <h4>Navegação</h4>
         <a href="#servicos">Serviços</a>
-        <a href="#portfolio">Projetos</a>
         <a class="ext" href="https://wa.me/5585992328407?text=Oi%20Emyle!%20Quero%20o%20diagn%C3%B3stico%20gratuito%20do%20meu%20marketing." target="_blank" rel="noopener">Diagnóstico gratuito</a>
       </div>
 
