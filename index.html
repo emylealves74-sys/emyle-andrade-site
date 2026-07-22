@@ -212,8 +212,10 @@ nav{position:relative;z-index:3;display:flex;justify-content:space-between;align
 /* ============ FOOTER - big footer estilo PlumFix ============ */
 .site-footer{position:relative;border-top:1px solid var(--line);background:linear-gradient(to bottom,var(--bg),#0b0b0c);overflow:hidden}
 .footer-top{display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr;gap:40px;padding:66px 0 46px}
-.footer-brand .logo{font-size:1.4rem;margin-bottom:16px}
-.footer-brand .logo span{color:var(--accent)}
+.footer-brand .logo{margin-bottom:16px}
+.footer-brand .logo-mark{width:34px;height:34px}
+.footer-brand .logo-name{font-size:1.1rem}
+.footer-brand .logo-tag{font-size:.64rem}
 .footer-brand p{font-size:.9rem;color:var(--muted);max-width:360px;line-height:1.55}
 .footer-brand p strong{color:var(--text);font-weight:600}
 .footer-col h4{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:18px}
@@ -480,7 +482,24 @@ nav{position:relative;z-index:3;display:flex;justify-content:space-between;align
   <div class="wrap">
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="logo">emyle<span>·</span>andrade</div>
+        <div class="logo">
+          <div class="logo-mark">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" fill="var(--accent)" d="
+                M10,50 A32,32 0 1,0 74,50 A32,32 0 1,0 10,50 Z
+                M25,50 A17,17 0 1,0 59,50 A17,17 0 1,0 25,50 Z
+                M25,44 H74 V56 H25 Z
+                M74,38 L96,50 L74,62 Z
+                M58,32 L76,26 L68,44 Z
+                M58,68 L76,74 L68,56 Z
+              "></path>
+            </svg>
+          </div>
+          <div>
+            <div class="logo-name">Emyle Andrade</div>
+            <div class="logo-tag">Alta Performance</div>
+          </div>
+        </div>
         <p>Eu cuido do seu marketing de ponta a ponta: análise, página, campanha e acompanhamento. Aqui você não fala com atendente nem recebe pacote pronto. <strong>Quem monta e conduz sua estratégia sou eu.</strong></p>
       </div>
 
