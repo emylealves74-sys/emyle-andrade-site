@@ -21,7 +21,8 @@
 <link rel="icon" type="image/png" href="/logo-favicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&family=Playfair+Display:ital,wght@1,500;1,600&display=swap" rel="stylesheet" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&family=Playfair+Display:ital,wght@1,600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&family=Playfair+Display:ital,wght@1,600&display=swap" /></noscript>
 <style>
 :root{
   --bg:#08090a;
@@ -637,7 +638,20 @@ if(typeEl) typeLoop();
 const LEG_RADIUS = 250;   // alcance das "pernas" da aranha
 const LEG_COUNT = 8;      // quantas pernas no máximo
 
+// só anima enquanto o hero está visível (economiza CPU e bateria no scroll)
+let heroVisible = true, rafId = null;
+function startLoop(){ if(rafId === null) rafId = requestAnimationFrame(draw); }
+if(heroSection && 'IntersectionObserver' in window){
+  new IntersectionObserver(entries => {
+    heroVisible = entries[0].isIntersecting;
+    // se o canvas nasceu sem tamanho (aba em segundo plano), redimensiona ao aparecer
+    if(heroVisible && canvas.width !== canvas.offsetWidth) resize();
+    if(heroVisible) startLoop();
+  }, { threshold: 0 }).observe(heroSection);
+}
+
 function draw(){
+  rafId = null;
   ctx.clearRect(0,0,w,h);
 
   // campo de estrelas (piscando suave)
@@ -686,9 +700,9 @@ function draw(){
   ctx.fillRect(lead.x - 3.5, lead.y - 3.5, 7, 7);
   ctx.restore();
 
-  requestAnimationFrame(draw);
+  if(heroVisible) startLoop();
 }
-draw();
+startLoop();
 </script>
 
 </body>
