@@ -21,7 +21,7 @@
 <link rel="icon" type="image/png" href="/logo-favicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&family=Playfair+Display:ital,wght@1,500;1,600&display=swap" rel="stylesheet" />
 <style>
 :root{
   --bg:#08090a;
@@ -34,13 +34,13 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.5}
+body{background:var(--bg);color:var(--text);font-family:'Geist','Inter',system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.5}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 .wrap{width:min(100% - 2.4rem,1180px);margin-inline:auto}
 h2{font-size:clamp(1.7rem,3.4vw,2.6rem);font-weight:600;letter-spacing:-0.03em;line-height:1.1}
 .sec{padding:80px 0}
-.sec-tag{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;color:var(--accent);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px}
+.sec-tag{font-family:'Geist Mono',monospace;display:inline-flex;align-items:center;gap:8px;font-size:.76rem;color:var(--accent);font-weight:500;letter-spacing:.04em;text-transform:uppercase;margin-bottom:14px}
 .sec-tag::before{content:"";width:22px;height:2px;background:var(--accent)}
 
 /* ============ HERO ============ */
@@ -58,7 +58,7 @@ nav{position:relative;z-index:3;display:flex;justify-content:space-between;align
 .eyebrow{font-size:.9rem;color:var(--text);font-weight:600;line-height:1.35;letter-spacing:-0.01em;opacity:0;transform:translateY(16px);animation:fadeUp .8s ease forwards;animation-delay:.1s}
 .headline{font-size:clamp(1.85rem,4.1vw,3.9rem);font-weight:600;line-height:1.03;letter-spacing:-0.04em}
 .headline .dash{display:inline-block;width:0.62em;height:0.11em;background:var(--accent);border-radius:2px;vertical-align:middle;margin-right:0.3em;transform:translateY(-0.12em)}
-.headline .accent{color:var(--accent)}
+.headline .accent{color:var(--accent);font-family:'Playfair Display',serif;font-style:italic;font-weight:600}
 .headline span.line{display:block;opacity:0;transform:translateY(24px);animation:fadeUp .8s ease forwards}
 .headline .line:nth-child(1){animation-delay:.15s}
 .headline .line:nth-child(2){animation-delay:.3s}
@@ -101,7 +101,7 @@ nav{position:relative;z-index:3;display:flex;justify-content:space-between;align
 .dores-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-top:36px}
 .dor{background:var(--bg-2);padding:28px}
 .dor h3{font-size:1.05rem;font-weight:600;letter-spacing:-0.02em;margin-bottom:8px}
-.dor h3 em{font-style:normal;color:var(--accent)}
+.dor h3 em{font-family:'Playfair Display',serif;font-style:italic;font-weight:600;color:var(--accent)}
 .dor p{font-size:.88rem;color:var(--muted)}
 .dor .num{font-size:.75rem;color:var(--accent);font-weight:600;display:block;margin-bottom:12px}
 
@@ -141,7 +141,7 @@ nav{position:relative;z-index:3;display:flex;justify-content:space-between;align
 .cta-final::before{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:820px;height:600px;background:radial-gradient(ellipse,var(--accent) 0%,rgba(255,90,46,.5) 28%,transparent 68%);opacity:.3;z-index:-1;pointer-events:none}
 .cta-final h2{max-width:620px;margin-inline:auto}
 .cta-final p{color:var(--muted);margin:16px auto 30px;max-width:440px;font-size:.95rem}
-.cta-final .accent{color:var(--accent)}
+.cta-final .accent{color:var(--accent);font-family:'Playfair Display',serif;font-style:italic;font-weight:600}
 
 /* ============ FOOTER - big footer estilo PlumFix ============ */
 .site-footer{position:relative;border-top:1px solid var(--line);background:linear-gradient(to bottom,var(--bg),#0b0b0c);overflow:hidden}
@@ -289,7 +289,7 @@ nav{position:relative;z-index:3;display:flex;justify-content:space-between;align
 <section class="sec" id="servicos">
   <div class="wrap">
     <span class="sec-tag">Como eu resolvo</span>
-    <h2>Marketing completo, focado em uma coisa só:<br><span style="color:var(--accent)">colocar cliente no seu WhatsApp.</span></h2>
+    <h2>Marketing completo, focado em uma coisa só:<br><span style="color:var(--accent);font-family:'Playfair Display',serif;font-style:italic;font-weight:600">colocar cliente no seu WhatsApp.</span></h2>
     <div class="showcase-full">
       <img src="/showcase-phones.webp" alt="Landing pages em celulares, exemplo de páginas de alta conversão" loading="lazy" width="1920" height="820">
       <div class="showcase-glass">
