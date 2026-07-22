@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" rx="22" fill="#08090a"/>
+  <g transform="translate(50 50) scale(0.78) translate(-50 -50)">
+    <path fill-rule="evenodd" clip-rule="evenodd" fill="#ff5a2e" d="
+      M10,50 A32,32 0 1,0 74,50 A32,32 0 1,0 10,50 Z
+      M25,50 A17,17 0 1,0 59,50 A17,17 0 1,0 25,50 Z
+      M25,44 H74 V56 H25 Z
+      M74,38 L96,50 L74,62 Z
+      M58,32 L76,26 L68,44 Z
+      M58,68 L76,74 L68,56 Z
+    "/>
+  </g>
+</svg>
