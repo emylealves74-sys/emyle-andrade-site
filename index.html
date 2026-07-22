@@ -569,10 +569,12 @@ nav{position:relative;z-index:3;display:flex;justify-content:space-between;align
 const canvas = document.getElementById('stars');
 const ctx = canvas.getContext('2d');
 let w, h, particles = [];
+const lead = { x: 0, y: 0, tx: 0, ty: 0 };
+const mouse = { x: 0, y: 0, active: false };
 
 function makeParticles(){
   particles = [];
-  const count = w < 700 ? 60 : 120;
+  const count = w < 700 ? 55 : 110;
   for(let i=0;i<count;i++){
     particles.push({
       x: Math.random()*w,
@@ -583,13 +585,31 @@ function makeParticles(){
     });
   }
 }
+function pickTarget(){
+  lead.tx = Math.random()*w;
+  lead.ty = Math.random()*h;
+}
 function resize(){
   w = canvas.width = canvas.offsetWidth;
   h = canvas.height = canvas.offsetHeight;
   makeParticles();
+  if(!lead.x){ lead.x = w*0.5; lead.y = h*0.55; }
+  pickTarget();
 }
 window.addEventListener('resize', resize);
 resize();
+
+// A aranha segue o cursor quando ele está sobre o hero; senão passeia sozinha
+const heroSection = document.querySelector('.hero');
+if(heroSection){
+  heroSection.addEventListener('pointermove', e => {
+    const r = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - r.left;
+    mouse.y = e.clientY - r.top;
+    mouse.active = true;
+  }, { passive: true });
+  heroSection.addEventListener('pointerleave', () => { mouse.active = false; }, { passive: true });
+}
 
 const frases = [
   "Criar landing page de alta conversão",
@@ -614,15 +634,58 @@ function typeLoop(){
 }
 if(typeEl) typeLoop();
 
+const LEG_RADIUS = 250;   // alcance das "pernas" da aranha
+const LEG_COUNT = 8;      // quantas pernas no máximo
+
 function draw(){
   ctx.clearRect(0,0,w,h);
+
+  // campo de estrelas (piscando suave)
   for(const p of particles){
     p.a += p.speed;
     ctx.beginPath();
     ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-    ctx.fillStyle = 'rgba(255,255,255,' + (Math.abs(Math.sin(p.a))*0.8).toFixed(3) + ')';
+    ctx.fillStyle = 'rgba(255,255,255,' + (Math.abs(Math.sin(p.a))*0.6).toFixed(3) + ')';
     ctx.fill();
   }
+
+  // alvo da aranha: cursor quando ativo, senão o ponto de passeio
+  const tx = mouse.active ? mouse.x : lead.tx;
+  const ty = mouse.active ? mouse.y : lead.ty;
+  lead.x += (tx - lead.x) * 0.02;
+  lead.y += (ty - lead.y) * 0.02;
+  if(!mouse.active && Math.hypot(lead.tx - lead.x, lead.ty - lead.y) < 40) pickTarget();
+
+  // pernas: linhas até os pontos mais próximos dentro do raio
+  const near = [];
+  for(const p of particles){
+    const d = Math.hypot(p.x - lead.x, p.y - lead.y);
+    if(d < LEG_RADIUS) near.push({ p, d });
+  }
+  near.sort((a,b) => a.d - b.d);
+  for(let i=0; i<Math.min(LEG_COUNT, near.length); i++){
+    const n = near[i];
+    const o = (1 - n.d/LEG_RADIUS) * 0.7;
+    ctx.beginPath();
+    ctx.moveTo(lead.x, lead.y);
+    ctx.lineTo(n.p.x, n.p.y);
+    ctx.strokeStyle = 'rgba(255,90,46,' + o.toFixed(3) + ')';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(n.p.x, n.p.y, 1.6, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(255,150,100,' + o.toFixed(3) + ')';
+    ctx.fill();
+  }
+
+  // corpo da aranha (quadradinho com glow)
+  ctx.save();
+  ctx.shadowColor = 'rgba(255,90,46,0.9)';
+  ctx.shadowBlur = 12;
+  ctx.fillStyle = '#ff5a2e';
+  ctx.fillRect(lead.x - 3.5, lead.y - 3.5, 7, 7);
+  ctx.restore();
+
   requestAnimationFrame(draw);
 }
 draw();
