@@ -47,7 +47,11 @@ h2{font-size:clamp(1.7rem,3.4vw,2.6rem);font-weight:600;letter-spacing:-0.03em;l
 .hero{position:relative;min-height:100svh;padding:24px 5vw 48px;display:flex;flex-direction:column;overflow:hidden}
 canvas#stars{position:absolute;inset:0;width:100%;height:100%;z-index:0}
 .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:140px;background:linear-gradient(to bottom,transparent,var(--bg));z-index:1;pointer-events:none}
-nav{position:relative;z-index:3;display:flex;justify-content:space-between;align-items:center;gap:24px}
+nav{position:relative;z-index:3;display:flex;justify-content:space-between;align-items:center;gap:24px;
+  padding:12px 22px;border-radius:999px;
+  background:rgba(20,14,10,.5);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);
+  border:1px solid rgba(255,140,80,.4);
+  box-shadow:0 0 0 1px rgba(255,90,46,.18),0 0 18px 1px rgba(255,90,46,.5),0 0 46px 6px rgba(255,90,46,.22),inset 0 1px 0 rgba(255,255,255,.06)}
 .logo{display:flex;align-items:center;gap:10px}
 .logo-mark{width:28px;height:28px;flex:0 0 auto}
 .logo-mark svg{width:100%;height:100%}
