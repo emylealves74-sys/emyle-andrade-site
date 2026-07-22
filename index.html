@@ -98,12 +98,26 @@ nav{position:relative;z-index:3;display:flex;justify-content:space-between;align
 
 /* ============ DORES ============ */
 .dores{background:var(--bg-2);border-block:1px solid var(--line)}
-.dores-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-top:36px}
-.dor{background:var(--bg-2);padding:28px}
+.dores-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-areas:"lead lead lead" "b c d";gap:16px;margin-top:36px}
+.dor{background:#141414;border:1px solid var(--line);padding:26px;box-shadow:0 14px 30px -20px rgba(0,0,0,.6);transition:border-color .3s ease,transform .3s ease,box-shadow .3s ease}
+.dor:hover{border-color:rgba(255,90,46,.35);transform:translateY(-3px)}
 .dor h3{font-size:1.05rem;font-weight:600;letter-spacing:-0.02em;margin-bottom:8px}
 .dor h3 em{font-family:'Playfair Display',serif;font-style:italic;font-weight:600;color:var(--accent)}
 .dor p{font-size:.88rem;color:var(--muted)}
 .dor .num{font-size:.75rem;color:var(--accent);font-weight:600;display:block;margin-bottom:12px}
+
+.dor-lead{grid-area:lead;display:flex;align-items:center;gap:26px;padding:34px 38px;
+  border-radius:20px;background:linear-gradient(135deg,rgba(255,90,46,.1),#141414 55%);
+  box-shadow:0 20px 44px -24px rgba(255,90,46,.35)}
+.dor-lead .lead-badge{flex:0 0 auto;width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;
+  background:var(--accent-soft);border:1px solid rgba(255,90,46,.4);color:var(--accent);font-family:'Geist Mono',monospace;font-size:1.1rem;font-weight:600}
+.dor-lead h3{font-size:clamp(1.15rem,1.8vw,1.4rem);margin-bottom:8px}
+.dor-lead p{font-size:.92rem;max-width:560px}
+
+.dor-b{grid-area:b;border-radius:14px}
+.dor-c{grid-area:c;border-radius:22px;transform:rotate(-1.4deg) translateY(-6px)}
+.dor-c:hover{transform:rotate(-1.4deg) translateY(-9px)}
+.dor-d{grid-area:d;border-radius:14px;border-left:3px solid var(--accent)}
 
 /* ============ SERVIÇOS - showcase full-bleed + vidro ============ */
 .showcase-full{position:relative;border-radius:20px;overflow:hidden;margin-top:36px;isolation:isolate;
@@ -138,7 +152,15 @@ nav{position:relative;z-index:3;display:flex;justify-content:space-between;align
 
 /* ============ CTA FINAL ============ */
 .cta-final{position:relative;z-index:0;text-align:center;padding:110px 0;overflow:hidden}
-.cta-final::before{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:820px;height:600px;background:radial-gradient(ellipse,var(--accent) 0%,rgba(255,90,46,.5) 28%,transparent 68%);opacity:.3;z-index:-1;pointer-events:none}
+.cta-final::before{content:"";position:absolute;inset:-15%;z-index:-2;pointer-events:none;
+  background:
+    radial-gradient(ellipse 55% 50% at 10% 12%, rgba(255,90,46,.24), transparent 60%),
+    radial-gradient(ellipse 45% 50% at 90% 8%, rgba(255,90,46,.16), transparent 62%),
+    radial-gradient(ellipse 60% 55% at 50% 105%, rgba(255,90,46,.22), transparent 58%),
+    radial-gradient(ellipse 40% 45% at 95% 95%, rgba(255,90,46,.14), transparent 60%),
+    radial-gradient(ellipse 35% 40% at 4% 90%, rgba(255,90,46,.12), transparent 60%)}
+.cta-final::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.045;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .cta-final h2{max-width:620px;margin-inline:auto}
 .cta-final p{color:var(--muted);margin:16px auto 30px;max-width:440px;font-size:.95rem}
 .cta-final .accent{color:var(--accent);font-family:'Playfair Display',serif;font-style:italic;font-weight:600}
@@ -182,7 +204,11 @@ nav{position:relative;z-index:3;display:flex;justify-content:space-between;align
   .cta-row .btn-primary{width:100%;justify-content:center}
   .stats{gap:16px 28px;flex-wrap:wrap}
   .stat-num{font-size:1.6rem}
-  .dores-grid,.passos{grid-template-columns:1fr}
+  .dores-grid{grid-template-columns:1fr;grid-template-areas:"lead" "b" "c" "d"}
+  .dor-lead{flex-direction:column;align-items:flex-start;padding:26px}
+  .dor-c{transform:none}
+  .dor-c:hover{transform:translateY(-3px)}
+  .passos{grid-template-columns:1fr}
   .showcase-full{display:flex;flex-direction:column}
   .showcase-full::after{display:none}
   .showcase-glass{position:static;max-width:none;padding:18px 20px;border-radius:0;backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--bg-2);border:1px solid var(--line);border-top:none}
@@ -263,22 +289,24 @@ nav{position:relative;z-index:3;display:flex;justify-content:space-between;align
     <span class="sec-tag">O problema</span>
     <h2>Se você sente isso, o problema não é o seu produto.<br>É o caminho até o cliente.</h2>
     <div class="dores-grid">
-      <div class="dor">
-        <span class="num">01</span>
-        <h3>Você impulsiona post, gasta… <em>e ninguém chama</em></h3>
-        <p>Impulsionar sem estratégia é doar dinheiro pro Meta. Anúncio bom tem público certo, oferta clara e uma página preparada pra receber o clique.</p>
+      <div class="dor dor-lead">
+        <span class="lead-badge">01</span>
+        <div>
+          <h3>Você impulsiona post, gasta… <em>e ninguém chama</em></h3>
+          <p>Impulsionar sem estratégia é doar dinheiro pro Meta. Anúncio bom tem público certo, oferta clara e uma página preparada pra receber o clique.</p>
+        </div>
       </div>
-      <div class="dor">
+      <div class="dor dor-b">
         <span class="num">02</span>
         <h3>Seguidor curte, elogia… <em>e compra do concorrente</em></h3>
         <p>Perfil bonito não paga boleto. Sem um funil que leve o seguidor até o WhatsApp, seu Instagram vira vitrine do concorrente que anuncia.</p>
       </div>
-      <div class="dor">
+      <div class="dor dor-c">
         <span class="num">03</span>
         <h3>Sua "página" é <em>o link da bio</em></h3>
         <p>Quem clica no seu anúncio tem 5 segundos de paciência. Se não entende a oferta e não acha o botão, fecha, e o clique que você pagou vira nada.</p>
       </div>
-      <div class="dor">
+      <div class="dor dor-d">
         <span class="num">04</span>
         <h3>Você ainda depende de <em>indicação</em> pra vender</h3>
         <p>Mês bom, mês ruim. Sem um canal previsível de clientes novos, o crescimento do seu negócio fica na sorte.</p>
