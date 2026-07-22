@@ -146,6 +146,10 @@ nav{position:relative;z-index:3;display:flex;justify-content:space-between;align
   background:linear-gradient(135deg,rgba(255,90,46,.07),#121110 55%);
   border:1px solid rgba(255,140,80,.25);
   box-shadow:0 0 90px -18px rgba(255,90,46,.38),0 0 30px -10px rgba(255,90,46,.22)}
+.port-block::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:2px;z-index:2;pointer-events:none;
+  background:conic-gradient(from var(--angle),transparent 0%,rgba(255,90,46,.9) 10%,rgba(255,200,160,.6) 14%,transparent 24%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
+  animation:beam 9s linear infinite}
 .port-tag{font-family:'Geist Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:8px;margin-bottom:24px}
 .port-tag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px 2px rgba(255,90,46,.6)}
 .port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
