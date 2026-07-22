@@ -48,8 +48,11 @@ h2{font-size:clamp(1.7rem,3.4vw,2.6rem);font-weight:600;letter-spacing:-0.03em;l
 canvas#stars{position:absolute;inset:0;width:100%;height:100%;z-index:0}
 .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:140px;background:linear-gradient(to bottom,transparent,var(--bg));z-index:1;pointer-events:none}
 nav{position:relative;z-index:3;display:flex;justify-content:space-between;align-items:center;gap:24px}
-.logo{font-weight:600;font-size:1.25rem;letter-spacing:-0.03em}
-.logo span{color:var(--accent)}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-mark{width:28px;height:28px;flex:0 0 auto}
+.logo-mark svg{width:100%;height:100%}
+.logo-name{font-weight:700;font-size:1rem;letter-spacing:-0.01em;color:var(--text);line-height:1.2}
+.logo-tag{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);line-height:1.3}
 .nav-menu{display:flex;align-items:center;gap:32px;margin-inline:auto}
 .nav-menu a{font-size:.88rem;color:var(--muted);font-weight:500;transition:color .2s ease}
 .nav-menu a:hover{color:var(--text)}
@@ -235,7 +238,24 @@ nav{position:relative;z-index:3;display:flex;justify-content:space-between;align
   <canvas id="stars" aria-hidden="true"></canvas>
 
   <nav class="wrap" style="width:100%">
-    <div class="logo">emyle<span>·</span>andrade</div>
+    <div class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" fill="var(--accent)" d="
+            M10,50 A32,32 0 1,0 74,50 A32,32 0 1,0 10,50 Z
+            M25,50 A17,17 0 1,0 59,50 A17,17 0 1,0 25,50 Z
+            M25,44 H74 V56 H25 Z
+            M74,38 L96,50 L74,62 Z
+            M58,32 L76,26 L68,44 Z
+            M58,68 L76,74 L68,56 Z
+          "></path>
+        </svg>
+      </div>
+      <div>
+        <div class="logo-name">Emyle Andrade</div>
+        <div class="logo-tag">Alta Performance</div>
+      </div>
+    </div>
     <div class="nav-menu">
       <a href="#servicos">Serviços</a>
       <a href="#como-funciona">Como funciona</a>
