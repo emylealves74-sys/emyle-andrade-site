@@ -141,20 +141,38 @@ nav{position:relative;z-index:3;display:flex;justify-content:space-between;align
 .dor-c:hover{transform:rotate(-1.4deg) translateY(-9px)}
 .dor-d{grid-area:d;border-radius:14px;border-left:3px solid var(--accent)}
 
-/* ============ SERVIÇOS - showcase full-bleed + vidro ============ */
-.showcase-full{position:relative;border-radius:20px;overflow:hidden;margin-top:36px;isolation:isolate;
+/* ============ SERVIÇOS - portfólio real ============ */
+.port-block{position:relative;border-radius:20px;margin-top:36px;padding:30px 30px 26px;isolation:isolate;overflow:hidden;
+  background:linear-gradient(135deg,rgba(255,90,46,.07),#121110 55%);
+  border:1px solid rgba(255,140,80,.25);
   box-shadow:0 0 90px -18px rgba(255,90,46,.38),0 0 30px -10px rgba(255,90,46,.22)}
-.showcase-full img{width:100%;height:auto;display:block;transition:transform .6s cubic-bezier(.22,1,.36,1)}
-.showcase-full:hover img{transform:scale(1.025)}
-.showcase-full::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(0deg,rgba(4,4,5,.8) 0%,rgba(4,4,5,.2) 42%,transparent 65%)}
-.showcase-glass{position:absolute;left:28px;right:28px;bottom:28px;max-width:460px;z-index:2;
-  padding:24px 26px;border-radius:18px;
-  background:rgba(30,18,12,.32);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);
-  border:1px solid rgba(255,255,255,.16);
-  box-shadow:0 24px 60px -22px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.14)}
-.showcase-glass h3{font-size:clamp(1.15rem,2vw,1.5rem);font-weight:600;letter-spacing:-0.03em;line-height:1.2;margin-bottom:10px;color:#fff}
-.showcase-glass p{font-size:.86rem;line-height:1.5;color:rgba(255,255,255,.82)}
+.port-tag{font-family:'Geist Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:8px;margin-bottom:24px}
+.port-tag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px 2px rgba(255,90,46,.6)}
+.port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
+.port-card{display:block;border-radius:12px;overflow:hidden;background:#1a1918;border:1px solid var(--line);
+  box-shadow:0 18px 40px -18px rgba(0,0,0,.7);
+  transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .3s ease,box-shadow .3s ease}
+.port-card:nth-child(1){transform:translateY(12px)}
+.port-card:nth-child(2){transform:translateY(-6px) rotate(-1.2deg)}
+.port-card:nth-child(3){transform:translateY(6px)}
+.port-card:nth-child(4){transform:translateY(-4px)}
+.port-card:nth-child(5){transform:translateY(10px) rotate(1deg)}
+.port-card:nth-child(6){transform:translateY(-8px)}
+.port-card:hover{border-color:rgba(255,90,46,.45);box-shadow:0 24px 50px -18px rgba(0,0,0,.8),0 0 24px -6px rgba(255,90,46,.4)}
+.port-card:nth-child(1):hover{transform:translateY(6px)}
+.port-card:nth-child(2):hover{transform:translateY(-12px) rotate(-1.2deg)}
+.port-card:nth-child(3):hover{transform:translateY(0)}
+.port-card:nth-child(4):hover{transform:translateY(-10px)}
+.port-card:nth-child(5):hover{transform:translateY(4px) rotate(1deg)}
+.port-card:nth-child(6):hover{transform:translateY(-14px)}
+.port-bar{display:flex;align-items:center;gap:5px;padding:8px 10px;border-bottom:1px solid var(--line);background:#141312}
+.port-bar i{width:7px;height:7px;border-radius:50%;background:#2e2c2a}
+.port-bar span{margin-left:6px;font-family:'Geist Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.port-bar b{margin-left:auto;color:var(--accent);font-size:.7rem;font-weight:600}
+.port-card img{width:100%;height:auto;display:block}
+.port-caption{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;margin-top:28px;padding-top:20px;border-top:1px solid var(--line)}
+.port-caption h3{font-size:1.1rem;font-weight:600;letter-spacing:-0.02em;color:#fff;white-space:nowrap}
+.port-caption p{font-size:.85rem;color:var(--muted);max-width:640px;flex:1;min-width:260px}
 .serv-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
 .serv-pills span{background:var(--bg-2);border:1px solid var(--line);padding:9px 16px;border-radius:999px;font-size:.82rem;color:var(--muted);font-weight:500}
 .serv-pills span.hl{background:var(--accent-soft);border-color:rgba(255,90,46,.4);color:var(--accent);font-weight:600}
@@ -237,9 +255,12 @@ nav{position:relative;z-index:3;display:flex;justify-content:space-between;align
   .dor-c{transform:none}
   .dor-c:hover{transform:translateY(-3px)}
   .passos{grid-template-columns:1fr}
-  .showcase-full{display:flex;flex-direction:column}
-  .showcase-full::after{display:none}
-  .showcase-glass{position:static;max-width:none;padding:18px 20px;border-radius:0;backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--bg-2);border:1px solid var(--line);border-top:none}
+  .port-block{padding:20px 16px}
+  .port-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .port-card:nth-child(n){transform:none}
+  .port-card:nth-child(n):hover{transform:translateY(-4px)}
+  .port-caption{flex-direction:column;gap:8px}
+  .port-caption h3{white-space:normal}
   .footer-top{grid-template-columns:1fr 1fr;gap:32px 24px;padding:48px 0 36px}
   .footer-brand{grid-column:1/-1}
   .footer-giant span{font-size:12.5vw}
@@ -367,9 +388,35 @@ nav{position:relative;z-index:3;display:flex;justify-content:space-between;align
   <div class="wrap">
     <span class="sec-tag">Como eu resolvo</span>
     <h2>Marketing completo, focado em uma coisa só:<br><span style="color:var(--accent);font-family:'Playfair Display',serif;font-style:italic;font-weight:600">colocar cliente no seu WhatsApp.</span></h2>
-    <div class="showcase-full">
-      <img src="/showcase-phones.webp" alt="Landing pages em celulares, exemplo de páginas de alta conversão" loading="lazy" width="1920" height="820">
-      <div class="showcase-glass">
+    <div class="port-block">
+      <span class="port-tag">Projetos no ar</span>
+      <div class="port-grid">
+        <a class="port-card" href="https://leticia-fernanda.vercel.app/" target="_blank" rel="noopener">
+          <div class="port-bar"><i></i><i></i><i></i><span>LF Team · Personal</span><b>↗</b></div>
+          <img src="/port-leticia.webp" alt="Site da LF Team, personal trainer" loading="lazy" width="800" height="556">
+        </a>
+        <a class="port-card" href="https://rafael-vasconcelos-arquitetura.vercel.app/" target="_blank" rel="noopener">
+          <div class="port-bar"><i></i><i></i><i></i><span>RV · Arquitetura</span><b>↗</b></div>
+          <img src="/port-rafael.webp" alt="Site de Rafael Vasconcelos, arquitetura residencial" loading="lazy" width="800" height="556">
+        </a>
+        <a class="port-card" href="https://transferfortal.com.br/" target="_blank" rel="noopener">
+          <div class="port-bar"><i></i><i></i><i></i><span>Fortal · Transfer</span><b>↗</b></div>
+          <img src="/port-transfer.webp" alt="Site da Fortal Executivo, transporte executivo" loading="lazy" width="800" height="556">
+        </a>
+        <a class="port-card" href="https://emyle.vercel.app/" target="_blank" rel="noopener">
+          <div class="port-bar"><i></i><i></i><i></i><span>Emyle · Performance</span><b>↗</b></div>
+          <img src="/port-emyle.webp" alt="Landing page Emyle Andrade, alta performance" loading="lazy" width="800" height="556">
+        </a>
+        <a class="port-card" href="https://studio903.vercel.app/" target="_blank" rel="noopener">
+          <div class="port-bar"><i></i><i></i><i></i><span>Studio 903 · Interiores</span><b>↗</b></div>
+          <img src="/port-studio903.webp" alt="Site do Studio 903, arquitetura e interiores em Fortaleza" loading="lazy" width="800" height="556">
+        </a>
+        <a class="port-card" href="https://comando360.vercel.app/" target="_blank" rel="noopener">
+          <div class="port-bar"><i></i><i></i><i></i><span>Comando 360 · Sistemas</span><b>↗</b></div>
+          <img src="/port-comando360.webp" alt="Site do Comando 360, sistema de gestão empresarial" loading="lazy" width="800" height="556">
+        </a>
+      </div>
+      <div class="port-caption">
         <h3>Landing Pages de alta conversão</h3>
         <p>Páginas que abrem em até 2 segundos e falam direto com a dor do seu cliente. Feitas pra transformar o clique do anúncio em conversa no WhatsApp, não pra ganhar prêmio de design.</p>
       </div>
